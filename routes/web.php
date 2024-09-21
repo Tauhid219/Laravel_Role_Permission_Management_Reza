@@ -28,8 +28,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/role', RoleController::class)->names('rl');
     Route::get('/role/{id}/add-permissions', [RoleController::class, 'addPermissionToRole'])->name('addPermissionToRole');
     Route::put('/role/{id}/give-permissions', [RoleController::class, 'givePermissionToRole'])->name('givePermissionToRole');
-    Route::resource('user', UserController::class)->names('user');
-    Route::resource('product', ProductController::class)->names('prd');
+    Route::resource('/user', UserController::class)->names('user');
+    Route::resource('/product', ProductController::class)->names('prd');
     Route::get('welcome-page', function () {
         return view('role-permission.welcome-page');
     })->name('welcome-page');
