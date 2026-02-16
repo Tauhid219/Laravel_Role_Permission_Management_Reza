@@ -43,7 +43,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($role as $role)
+                                @foreach ($roles as $role)
                                     <tr>
                                         <td>{{ $role->id }}</td>
                                         <td>{{ $role->name }}</td>
@@ -56,7 +56,8 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 @can('delete role')
-                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                    <button type="submit" class="btn btn-danger"
+                                                        onclick="return confirm('Are you sure you want to delete this data?')">Delete</button>
                                                 @endcan
                                                 @can('create role')
                                                     <a href="{{ route('addPermissionToRole', $role->id) }}"
@@ -73,6 +74,8 @@
                                 @endforeach
                             </tbody>
                         </table>
+
+                        {{ $roles->links() }}
                     </div>
                 </div>
             </div>

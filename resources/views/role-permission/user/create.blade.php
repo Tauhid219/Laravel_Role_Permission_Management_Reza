@@ -39,7 +39,7 @@
                                 <label for="">Role</label>
                                 <select name="role[]" class="form-control">
                                     <option value="">Select Role</option>
-                                    @foreach ($role as $role)
+                                    @foreach ($roles as $role)
                                         <option value="{{ $role->name }}">{{ $role->name }}</option>
                                     @endforeach
                                 </select>

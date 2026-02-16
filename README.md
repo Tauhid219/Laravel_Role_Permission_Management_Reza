@@ -19,3 +19,13 @@ Steps:
 7. php artisan migrate 
 8. php artisan db:seed 
 9. php artisan serve 
+
+## 🚀 Export to Another Project (New Feature)
+If you have another Laravel project and want to add Role & Permission Management to it:
+
+1. Clone this repository alongside your target project.
+2. Run the export command from this project:
+   ```bash
+   php artisan role-permission:export "C:/path/to/your/target-project"
+   ```
+3. Follow the instructions shown in the terminal (install Spatie, migrate, seed). 

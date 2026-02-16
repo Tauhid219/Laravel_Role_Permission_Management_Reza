@@ -33,16 +33,16 @@
                             @method('PUT')
                             <div class="mb-3">
                                 @error('permission')
-                                    <span class="text-danger">{{ message }}</span>
+                                    <span class="text-danger">{{ $message }}</span>
                                 @enderror
                                 <label for="">Permissions</label>
                                 <div class="row">
-                                    @foreach ($permission as $permission)
+                                    @foreach ($permissions as $permission)
                                         <div class="col-md-2">
                                             <label for="">
                                                 <input type="checkbox" name="permission[]"
                                                     value="{{ $permission->name }}"
-                                                    {{ in_array($permission->id, $rolepermission) ? 'checked' : '' }}>
+                                                    {{ in_array($permission->id, $rolePermissions) ? 'checked' : '' }}>
                                                 {{ $permission->name }}
                                             </label>
                                         </div>

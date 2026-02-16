@@ -51,7 +51,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($user as $user)
+                                @foreach ($users as $user)
                                     <tr>
                                         <td>{{ $user->id }}</td>
                                         <td>{{ $user->name }}</td>
@@ -72,7 +72,8 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 @can('delete user')
-                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                    <button type="submit" class="btn btn-danger"
+                                                        onclick="return confirm('Are you sure you want to delete this data?')">Delete</button>
                                                 @endcan
                                             </form>
                                         </td>
@@ -80,6 +81,8 @@
                                 @endforeach
                             </tbody>
                         </table>
+
+                        {{ $users->links() }}
                     </div>
                 </div>
             </div>

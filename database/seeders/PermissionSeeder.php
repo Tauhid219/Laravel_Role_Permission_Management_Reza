@@ -25,7 +25,11 @@ class PermissionSeeder extends Seeder
             'create user',
             'view user',
             'update user',
-            'delete user'
+            'delete user',
+            'create product',
+            'view product',
+            'update product',
+            'delete product'
         ];
 
         foreach ($permissions as $permission) {

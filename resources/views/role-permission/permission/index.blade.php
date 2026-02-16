@@ -43,7 +43,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($permission as $permission)
+                                @foreach ($permissions as $permission)
                                     <tr>
                                         <td>{{ $permission->id }}</td>
                                         <td>{{ $permission->name }}</td>
@@ -56,7 +56,8 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 @can('delete permission')
-                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                    <button type="submit" class="btn btn-danger"
+                                                        onclick="return confirm('Are you sure you want to delete this data?')">Delete</button>
                                                 @endcan
                                             </form>
                                         </td>
@@ -64,6 +65,8 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        
+                        {{ $permissions->links() }}
                     </div>
                 </div>
             </div>
