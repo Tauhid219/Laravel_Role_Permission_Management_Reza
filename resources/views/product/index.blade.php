@@ -27,7 +27,7 @@
                 <div class="card mt-3">
                     <div class="card-header">
                         <h4>Products
-                            <a href="{{ route('prd.create') }}" class="btn btn-primary float-end">Add
+                            <a href="{{ route('product.create') }}" class="btn btn-primary float-end">Add
                                 Product</a>
                         </h4>
                     </div>
@@ -48,8 +48,8 @@
                                         <td>{{ $product->name }}</td>
                                         <td>{{ $product->price }}</td>
                                         <td>
-                                            <form action="{{ route('prd.destroy', $product->id) }}" method="POST">
-                                                <a href="{{ route('prd.edit', $product->id) }}"
+                                            <form action="{{ route('product.destroy', $product->id) }}" method="POST">
+                                                <a href="{{ route('product.edit', $product->id) }}"
                                                     class="btn btn-success">Edit</a>
                                                 @csrf
                                                 @method('DELETE')

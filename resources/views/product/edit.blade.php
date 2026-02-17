@@ -21,7 +21,7 @@
                         </h4>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('prd.update', $product->id) }}" method="POST">
+                        <form action="{{ route('product.update', $product->id) }}" method="POST">
                             @csrf
                             @method('PUT')
                             <div class="mb-3">

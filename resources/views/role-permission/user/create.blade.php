@@ -26,23 +26,27 @@
                             <div class="mb-3">
                                 <label for="">Name</label>
                                 <input type="text" name="name" class="form-control" />
+                                @error('name') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="">Email</label>
                                 <input type="text" name="email" class="form-control" />
+                                @error('email') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="">Password</label>
                                 <input type="text" name="password" class="form-control" />
+                                @error('password') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="">Role</label>
-                                <select name="role[]" class="form-control">
+                                <select name="role[]" class="form-control" multiple>
                                     <option value="">Select Role</option>
                                     @foreach ($roles as $role)
                                         <option value="{{ $role->name }}">{{ $role->name }}</option>
                                     @endforeach
                                 </select>
+                                @error('role') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
                             <div class="mb-3">
                                 <button type="submit" class="btn btn-primary">Save</button>

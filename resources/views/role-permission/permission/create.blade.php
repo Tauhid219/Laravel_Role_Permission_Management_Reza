@@ -21,7 +21,7 @@
                         </h4>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('pr.store') }}" method="POST">
+                        <form action="{{ route('permission.store') }}" method="POST">
                             @csrf
                             <div class="mb-3">
                                 <label for="">Permission Name</label>

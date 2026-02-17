@@ -48,9 +48,9 @@
                                         <td>{{ $role->id }}</td>
                                         <td>{{ $role->name }}</td>
                                         <td>
-                                            <form action="{{ route('rl.destroy', $role->id) }}" method="POST">
+                                            <form action="{{ route('role.destroy', $role->id) }}" method="POST">
                                                 @can('update role')
-                                                    <a href="{{ route('rl.edit', $role->id) }}"
+                                                    <a href="{{ route('role.edit', $role->id) }}"
                                                         class="btn btn-success">Edit</a>
                                                 @endcan
                                                 @csrf
@@ -65,7 +65,7 @@
                                                         / Edit Role Permission</a>
                                                 @endcan
                                                 @can('view role')
-                                                    <a href="{{ route('rl.show', $role->id) }}"
+                                                    <a href="{{ route('role.show', $role->id) }}"
                                                         class="btn btn-primary">Show</a>
                                                 @endcan
                                             </form>

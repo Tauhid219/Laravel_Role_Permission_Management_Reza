@@ -48,9 +48,9 @@
                                         <td>{{ $permission->id }}</td>
                                         <td>{{ $permission->name }}</td>
                                         <td>
-                                            <form action="{{ route('pr.destroy', $permission->id) }}" method="POST">
+                                            <form action="{{ route('permission.destroy', $permission->id) }}" method="POST">
                                                 @can('update permission')
-                                                    <a href="{{ route('pr.edit', $permission->id) }}"
+                                                    <a href="{{ route('permission.edit', $permission->id) }}"
                                                         class="btn btn-success">Edit</a>
                                                 @endcan
                                                 @csrf

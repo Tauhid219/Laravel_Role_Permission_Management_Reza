@@ -21,7 +21,7 @@
                         </h4>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('rl.store') }}" method="POST">
+                        <form action="{{ route('role.store') }}" method="POST">
                             @csrf
                             <div class="mb-3">
                                 <label for="">Role Name</label>

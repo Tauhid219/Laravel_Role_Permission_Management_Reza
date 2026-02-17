@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
@@ -24,62 +26,20 @@ class UserController extends Controller implements HasMiddleware
 
     public function index()
     {
-        $user = User::get();
-        return view('role-permission.user.index', compact('user'));
+        $users = User::paginate(10);
+        return view('role-permission.user.index', [
+            'users' => $users
+        ]);
     }
 
     public function create()
     {
-        $role = Role::get();
-        return view('role-permission.user.create', compact('role'));
+        $roles = Role::get();
+        return view('role-permission.user.create', compact('roles'));
     }
 
-    public function edit(User $user)
+    public function store(StoreUserRequest $request)
     {
-        $role = Role::all();
-        $userRole = $user->roles->pluck('id')->toArray(); // or getRoleNames() if you are using role names
-        return view('role-permission.user.edit', compact('user', 'role', 'userRole'));
-    }
-
-    public function update(Request $request, string $id)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'password' => 'nullable|string|min:8|max:20',
-            'role' => 'required',
-        ]);
-
-        $data = [
-            'name' => $request->name,
-            'email' => $request->email,
-
-        ];
-
-        if (!empty($request->password)) {
-            $data += [
-                'password' => Hash::make($request->password)
-            ];
-        }
-
-        $user = User::find($id);
-        $user->update($data);
-
-        // Get role names from role IDs
-        $roleNames = Role::whereIn('id', $request->role)->pluck('name')->toArray();
-        $user->syncRoles($roleNames);
-
-        return redirect('user')->with('status', 'User Updated Successfully with Roles');
-    }
-
-    public function store(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:8|max:20',
-            'role' => 'required',
-        ]);
-
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -91,9 +51,41 @@ class UserController extends Controller implements HasMiddleware
         return redirect('/user')->with('status', 'User Created Successfully with Roles');
     }
 
+    public function edit(User $user)
+    {
+        $roles = Role::all();
+        $userRoles = $user->roles->pluck('id')->toArray();
+        return view('role-permission.user.edit', [
+            'user' => $user,
+            'roles' => $roles,
+            'userRoles' => $userRoles
+        ]);
+    }
+
+    public function update(UpdateUserRequest $request, string $id)
+    {
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+        ];
+
+        if (!empty($request->password)) {
+            $data += [
+                'password' => Hash::make($request->password)
+            ];
+        }
+
+        $user = User::findOrFail($id);
+        $user->update($data);
+
+        $user->syncRoles($request->role);
+
+        return redirect('user')->with('status', 'User Updated Successfully with Roles');
+    }
+
     public function destroy(string $id)
     {
-        User::find($id)->delete();
+        User::findOrFail($id)->delete();
         return redirect('user')->with('status', 'User Deleted Successfully');
     }
 }
