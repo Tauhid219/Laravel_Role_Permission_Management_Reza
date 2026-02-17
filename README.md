@@ -67,7 +67,7 @@ php artisan role-permission:export "C:/path/to/your/target-project"
 ```
 
 This command will automatically copy:
-- ✅ Controllers (Role, Permission, User, Product)
+- ✅ Controllers (Role, Permission, User)
 - ✅ Views (Blade files)
 - ✅ Routes (`web.php`)
 - ✅ Seeders
