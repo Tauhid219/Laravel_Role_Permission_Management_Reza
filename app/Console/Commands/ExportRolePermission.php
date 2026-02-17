@@ -44,8 +44,7 @@ class ExportRolePermission extends Command
         $controllers = [
             'PermissionController.php',
             'RoleController.php',
-            'UserController.php',
-            'ProductController.php'
+            'UserController.php'
         ];
         $this->copyFiles(app_path('Http/Controllers'), $targetPath . '/app/Http/Controllers', $controllers);
 
@@ -53,8 +52,7 @@ class ExportRolePermission extends Command
         $requests = [
             'StorePermissionRequest.php', 'UpdatePermissionRequest.php',
             'StoreRoleRequest.php', 'UpdateRoleRequest.php',
-            'StoreUserRequest.php', 'UpdateUserRequest.php',
-            'StoreProductRequest.php', 'UpdateProductRequest.php'
+            'StoreUserRequest.php', 'UpdateUserRequest.php'
         ];
         // Ensure directory exists
         if (!File::exists($targetPath . '/app/Http/Requests')) {
@@ -64,7 +62,6 @@ class ExportRolePermission extends Command
 
         // 3. Copy Views
         $this->copyDirectory(resource_path('views/role-permission'), $targetPath . '/resources/views/role-permission');
-        $this->copyDirectory(resource_path('views/product'), $targetPath . '/resources/views/product');
         // Copy nav-links? It's inside role-permission now? No, it's inside role-permission dir.
 
         // 4. Copy Seeders
@@ -84,7 +81,6 @@ class ExportRolePermission extends Command
             "    Route::get('/role/{id}/add-permissions', [App\Http\Controllers\RoleController::class, 'addPermissionToRole'])->name('addPermissionToRole');\n" .
             "    Route::put('/role/{id}/give-permissions', [App\Http\Controllers\RoleController::class, 'givePermissionToRole'])->name('givePermissionToRole');\n" .
             "    Route::resource('/user', App\Http\Controllers\UserController::class);\n" .
-            "    Route::resource('/product', App\Http\Controllers\ProductController::class);\n" .
             "});\n";
 
         File::append($targetPath . '/routes/web.php', $routesContent);

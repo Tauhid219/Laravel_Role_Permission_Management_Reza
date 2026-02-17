@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\PermissionController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -29,8 +28,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/role/{id}/add-permissions', [RoleController::class , 'addPermissionToRole'])->name('addPermissionToRole');
     Route::put('/role/{id}/give-permissions', [RoleController::class , 'givePermissionToRole'])->name('givePermissionToRole');
     Route::resource('/user', UserController::class);
-    Route::resource('/product', ProductController::class);
     Route::get('welcome-page', function () {
             return view('role-permission.welcome-page');
         }
-        )->name('welcome-page');    });
+        )->name('welcome-page');
+    });
